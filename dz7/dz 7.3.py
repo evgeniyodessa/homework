@@ -14,25 +14,12 @@
 import random
 
 a = random.randint(1, 10)
-# print("Случайное число: "+str(a))
-b = int(input("Попытка 1: "))
-if b < a:
-    print("Бери больше")
-elif b > a:
-    print("Бери меньше")
-else:
-    print("Ты угадал!")
-c = int(input("Попытка 2: "))
-if c < a:
-    print("Бери больше")
-elif c > a:
-    print("Бери меньше")
-else:
-    print("Ты угадал!")
-d = int(input("Попытка 3: "))
-if d < a:
-    print("Бери больше")
-elif d > a:
-    print("Бери меньше")
-else:
-    print("Ты угадал!")
+for c in range(3):
+    user_digit = int(input("Попытка " + str(c + 1) + ": "))
+    if user_digit > a:
+        print("Бери меньше")
+    elif user_digit < a:
+        print("Бери больше")
+    else:
+        print("Ты угадал!")
+        exit()
