@@ -10,7 +10,6 @@ user_text = input("Enter yout text: ")
 symbol_move = int(input("Enter symbol's shift: "))
 a = 0
 for i in user_text:
-    coded_text_symbols = ord(user_text[a]) + symbol_move
-    coded_text = chr(coded_text_symbols)
+    coded_text = chr(ord(user_text[a]) + symbol_move)
     a += 1
     print(coded_text, end="")
