@@ -10,7 +10,7 @@ for symbol in test_string:
     if symbol.isspace():
         space_count += 1
     if symbol.islower():
-        low_case_count = +1
+        low_case_count += 1
     if symbol.isupper():
         up_case_count += 1
     if symbol.isdigit():
