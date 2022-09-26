@@ -9,6 +9,3 @@ for i in range(count):
     b=a+b
     a=b-a
     print(b)
-
-
-
