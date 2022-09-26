@@ -5,7 +5,7 @@ print(a)
 b=1
 print(b)
 
-for i in range(count):
+for i in range(count-2):
     b=a+b
     a=b-a
     print(b)
