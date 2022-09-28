@@ -13,12 +13,12 @@
 
 import random
 
-a = random.randint(1, 10)
+c = random.randint(1, 10)
 for c in range(3):
-    user_digit = int(input("Попытка " + str(c + 1) + ": "))
-    if user_digit > a:
+    user_digit = int(input(f'Попытка {c+1}: '))
+    if user_digit > c:
         print("Бери меньше")
-    elif user_digit < a:
+    elif user_digit < c:
         print("Бери больше")
     else:
         print("Ты угадал!")
