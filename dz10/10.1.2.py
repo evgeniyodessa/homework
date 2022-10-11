@@ -8,5 +8,4 @@ A = [
 ]
 
 for i, value_1 in enumerate(A):
-    B = [A[i][j] for j, value_2 in enumerate(value_1) if j % 2 == 0 and A[0][j] > A[len(A)-1][j]]
-    print(*B)
+    print(*[A[i][j] for j, value_2 in enumerate(value_1) if j % 2 == 0 and A[0][j] > A[len(A)-1][j]])
