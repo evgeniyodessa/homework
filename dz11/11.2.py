@@ -5,7 +5,7 @@ for i in range(n):
     a = input('enter file name: ')
     b = input('enter permission for file: ')
     A[a] = b
-print(A)
+
 m = int(input('enter amount of files for checking permissions: '))
 for i in range(m):
     c = input('enter permission for file: ')
