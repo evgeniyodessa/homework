@@ -1,3 +1,5 @@
+from pprint import pprint
+
 data = [
     {'name': 'Test 1', 'position': 1},
     {'name': 'Test 2', 'position': 2},
@@ -13,4 +15,4 @@ def delete_pos(lst, position_number):
     return lst
 
 
-print(delete_pos(data, 3))
+pprint(delete_pos(data, 3))

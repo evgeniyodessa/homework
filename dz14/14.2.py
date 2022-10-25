@@ -1,3 +1,5 @@
+from pprint import pprint
+
 data = [
     {'name': 'Test 1', 'position': 1},
     {'name': 'Test 2', 'position': 2},
@@ -14,6 +16,6 @@ def add_pos(lst, position_number, arg_for_pos):
     return lst
 
 
-print(add_pos(data, 1, 'cat'))
+pprint(add_pos(data, 1, 'TEST'))
 
 
