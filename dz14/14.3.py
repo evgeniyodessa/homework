@@ -8,6 +8,8 @@ data = [
 
 
 def change_pos(lst, pos_for_change_1, pos_for_change_2):
+    if pos_for_change_1>pos_for_change_2:
+        pos_for_change_1, pos_for_change_2 = pos_for_change_2, pos_for_change_1
     lst.insert(pos_for_change_1 - 1, lst[pos_for_change_2 - 1])
     lst.pop(pos_for_change_2)
     lst.insert(pos_for_change_2, lst[pos_for_change_1])
@@ -19,4 +21,4 @@ def change_pos(lst, pos_for_change_1, pos_for_change_2):
     return lst
 
 
-pprint(change_pos(data, 2, 4))
+pprint(change_pos(data, 3, 1))
