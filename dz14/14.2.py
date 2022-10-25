@@ -16,4 +16,4 @@ def add_pos(lst, position_number, arg_for_pos):
 
 print(add_pos(data, 1, 'cat'))
 
-# new_dict = {'name': f'{arg_for_pos} {len(lst) + 1}', 'position': None}
+
