@@ -5,9 +5,8 @@ data = [
     {'name': 'Test 4', 'position': 4}
 ]
 
-
-def add_pos(lst, position_number):
-    new_dict = {'name': f'Test {len(lst) + 1}', 'position': None}
+def add_pos(lst, position_number, arg_for_pos):
+    new_dict = {'name': f'{arg_for_pos} {len(lst) + 1}', 'position': None}
     lst.insert(position_number - 1, new_dict)
 
     for i, i_value in enumerate(lst):
@@ -15,4 +14,6 @@ def add_pos(lst, position_number):
     return lst
 
 
-print(add_pos(data, 4))
+print(add_pos(data, 1, 'cat'))
+
+# new_dict = {'name': f'{arg_for_pos} {len(lst) + 1}', 'position': None}
