@@ -5,7 +5,7 @@ field = list(range(1, 10))
 
 while True:
     char = input('Выберите за кого будете играть (х или о): ')
-    if char in "XxOoХхОо":
+    if char in "XxOoХхОо" and len(char) == 1:
         player_char = char
         if player_char in "XxХх":
             comp_char = 'o'
@@ -14,6 +14,18 @@ while True:
         break
     else:
         print("Некорректный ввод! ")
+
+while True:
+    difficulty = input("Выберите сложность: легко - введите цифру 1, сложно - введите цифру 2:")
+    try:
+        difficulty = int(difficulty)
+    except:
+        print("Некорректный ввод!")
+        continue
+    if difficulty == 1 or difficulty == 2:
+        break
+    else:
+        print("Некорректный ввод!")
 
 first_move = random.choice([player_char, comp_char])
 
@@ -41,11 +53,24 @@ def player_move():
         except:
             print('Нужно выбрать свободную ячейку и ввести ее номер (1-9)')
             continue
-        if not (field[next_move - 1] == player_char or field[next_move - 1] == comp_char):
+        if 0 < next_move < 10 and not (field[next_move - 1] == player_char or field[next_move - 1] == comp_char):
             field[next_move - 1] = player_char
             move_is_done = True
         else:
             print('Нужно выбрать свободную ячейку и ввести ее номер (1-9)')
+
+
+def comp_move_easy():
+    while True:
+        try:
+            a = int(random.choice(field))
+        except:
+            continue
+        if isinstance(field[a - 1], int):
+            field[a - 1] = comp_char
+            break
+        elif isinstance(field[a - 1], str):
+            continue
 
 
 def comp_move():
@@ -53,7 +78,7 @@ def comp_move():
         field[4] = comp_char
         return
 
-    for i in range(3):  # horizontal
+    for i in range(3):  # ии горизонтали
         if field[i * 3] == field[i * 3 + 1] == comp_char and field[i * 3 + 2] != player_char:
             field[i * 3 + 2] = comp_char
             return
@@ -74,7 +99,7 @@ def comp_move():
             field[i * 3] = comp_char
             return
 
-    for i in range(3):  # вертикали
+    for i in range(3):  # ии вертикали
         if field[i] == field[i + 3] == comp_char and field[i + 6] != player_char:
             field[i + 6] = comp_char
             return
@@ -95,7 +120,7 @@ def comp_move():
         elif field[i + 6] == field[i + 3] == player_char and field[i] != comp_char:
             field[i] = comp_char
             return
-    # diagonals
+    # ии диагонали
     if field[0] == field[4] == comp_char and field[8] != player_char:
         field[8] = comp_char
         return
@@ -108,7 +133,7 @@ def comp_move():
     elif field[4] == field[8] == comp_char and field[0] != player_char:
         field[0] = comp_char
         return
-
+    # ии углы
     if field[0] == 1:
         field[0] = comp_char
         return
@@ -124,10 +149,12 @@ def comp_move():
     for i, i_value in enumerate(field):
         if isinstance(i_value, int):
             field[i] = comp_char
+            break
 
 
 def win_control():
-    draw_count = 0
+    draw_count_diff = 0
+    draw_count_easy = 0
     global game_over
     win_list = [
         [0, 1, 2],
@@ -153,20 +180,19 @@ def win_control():
 
     for i, i_value in enumerate(field):
         if second_move == i_value:
-            draw_count+=1
-    if draw_count==4:
+            draw_count_diff += 1
+    if draw_count_diff == 4 and difficulty == 2:
+        playing_field()
+        print("Ничья")
+        game_over = True
+    for j, j_value in enumerate(field):
+        if first_move == j_value:
+            draw_count_easy += 1
+    if draw_count_easy == 5 and difficulty == 1:
         playing_field()
         print("Ничья")
         game_over = True
 
-    # for i, i_value in enumerate(field):
-    #     if not isinstance(i_value, int):
-    #         draw_count += 1
-    #
-    # if draw_count == 9:
-    #     playing_field()
-    #     print("Ничья")
-    #     game_over = True
 
 while True:
     if first_move == player_char:
@@ -174,12 +200,18 @@ while True:
         win_control()
         if game_over:
             break
-        comp_move()
+        if difficulty == 1:
+            comp_move_easy()
+        elif difficulty == 2:
+            comp_move()
         win_control()
         if game_over:
             break
     else:
-        comp_move()
+        if difficulty == 1:
+            comp_move_easy()
+        elif difficulty == 2:
+            comp_move()
         win_control()
         if game_over:
             break
@@ -187,12 +219,3 @@ while True:
         win_control()
         if game_over:
             break
-
-#     нарисовать и заполнить поле
-#     рандом первый ход заполняем поле
-#     проверка на победу
-#     след ход - другой, счетчик +=1,заполняем поле
-#     трай - эксепт на ввод хо
-#     ифом проеверить, чтоб ячейка не занятая
-#     ии если сам 2 в ряд, если плеер 2 в ряд, центр, углы, рандом
-#
