@@ -84,16 +84,6 @@ def comp_move():
         elif field[i * 3 + 2] == field[i * 3 + 1] == comp_char and field[i * 3] != player_char:
             field[i * 3] = comp_char
             return
-    for i in range(3):
-        if field[i * 3] == field[i * 3 + 1] == player_char and field[i * 3 + 2] != comp_char:
-            field[i * 3 + 2] = comp_char
-            return
-        elif field[i * 3] == field[i * 3 + 2] == player_char and field[i * 3 + 1] != comp_char:
-            field[i * 3 + 1] = comp_char
-            return
-        elif field[i * 3 + 2] == field[i * 3 + 1] == player_char and field[i * 3] != comp_char:
-            field[i * 3] = comp_char
-            return
     for i in range(3):  # ии вертикали
         if field[i] == field[i + 3] == comp_char and field[i + 6] != player_char:
             field[i + 6] = comp_char
@@ -104,7 +94,29 @@ def comp_move():
         elif field[i + 6] == field[i + 3] == comp_char and field[i] != player_char:
             field[i] = comp_char
             return
+    if field[0] == field[4] == comp_char and field[8] != player_char:
+        field[8] = comp_char
+        return
+    elif field[4] == field[8] == comp_char and field[0] != player_char:
+        field[0] = comp_char
+        return
+    if field[2] == field[4] == comp_char and field[6] != player_char:
+        field[6] = comp_char
+        return
+    elif field[4] == field[6] == comp_char and field[2] != player_char:
+        field[0] = comp_char
+        return
 
+    for i in range(3):
+        if field[i * 3] == field[i * 3 + 1] == player_char and field[i * 3 + 2] != comp_char:
+            field[i * 3 + 2] = comp_char
+            return
+        elif field[i * 3] == field[i * 3 + 2] == player_char and field[i * 3 + 1] != comp_char:
+            field[i * 3 + 1] = comp_char
+            return
+        elif field[i * 3 + 2] == field[i * 3 + 1] == player_char and field[i * 3] != comp_char:
+            field[i * 3] = comp_char
+            return
     for i in range(3):
         if field[i] == field[i + 3] == player_char and field[i + 6] != comp_char:
             field[i + 6] = comp_char
@@ -115,13 +127,6 @@ def comp_move():
         elif field[i + 6] == field[i + 3] == player_char and field[i] != comp_char:
             field[i] = comp_char
             return
-    # ии диагонали
-    if field[0] == field[4] == comp_char and field[8] != player_char:
-        field[8] = comp_char
-        return
-    elif field[4] == field[8] == comp_char and field[0] != player_char:
-        field[0] = comp_char
-        return
     if field[0] == field[4] == player_char and field[8] != comp_char:
         field[8] = comp_char
         return
@@ -129,20 +134,14 @@ def comp_move():
         field[0] = comp_char
         return
 
-    if field[2] == field[4] == comp_char and field[6] != player_char:
-        field[6] = comp_char
-        return
-    elif field[4] == field[6] == comp_char and field[2] != player_char:
-        field[0] = comp_char
-        return
     if field[2] == field[4] == player_char and field[6] != comp_char:
         field[6] = comp_char
         return
     elif field[4] == field[6] == player_char and field[2] != comp_char:
         field[2] = comp_char
         return
-    # ии углы
-    priority = [4, 0, 8, 6, 2]
+
+    priority = [4, 0, 6, 8, 2]
     for i, i_value in enumerate(priority):
         if field[i_value] == i_value + 1:
             field[i_value] = comp_char
