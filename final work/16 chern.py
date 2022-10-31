@@ -122,11 +122,24 @@ def comp_move():
     elif field[4] == field[8] == comp_char and field[0] != player_char:
         field[0] = comp_char
         return
-    if field[0] == field[4] == comp_char and field[8] != player_char:
+    if field[0] == field[4] == player_char and field[8] != comp_char:
         field[8] = comp_char
         return
-    elif field[4] == field[8] == comp_char and field[0] != player_char:
+    elif field[4] == field[8] == player_char and field[0] != comp_char:
         field[0] = comp_char
+        return
+
+    if field[2] == field[4] == comp_char and field[6] != player_char:
+        field[6] = comp_char
+        return
+    elif field[4] == field[6] == comp_char and field[2] != player_char:
+        field[0] = comp_char
+        return
+    if field[2] == field[4] == player_char and field[6] != comp_char:
+        field[6] = comp_char
+        return
+    elif field[4] == field[6] == player_char and field[2] != comp_char:
+        field[2] = comp_char
         return
     # ии углы
     priority = [4, 0, 8, 6, 2]
