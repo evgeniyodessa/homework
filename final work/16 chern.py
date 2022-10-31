@@ -74,10 +74,6 @@ def comp_move_easy():
 
 
 def comp_move():
-    if field[4] == 5:
-        field[4] = comp_char
-        return
-
     for i in range(3):  # ии горизонтали
         if field[i * 3] == field[i * 3 + 1] == comp_char and field[i * 3 + 2] != player_char:
             field[i * 3 + 2] = comp_char
@@ -98,7 +94,6 @@ def comp_move():
         elif field[i * 3 + 2] == field[i * 3 + 1] == player_char and field[i * 3] != comp_char:
             field[i * 3] = comp_char
             return
-
     for i in range(3):  # ии вертикали
         if field[i] == field[i + 3] == comp_char and field[i + 6] != player_char:
             field[i + 6] = comp_char
@@ -134,18 +129,13 @@ def comp_move():
         field[0] = comp_char
         return
     # ии углы
-    if field[0] == 1:
-        field[0] = comp_char
-        return
-    elif field[2] == 3:
-        field[2] = comp_char
-        return
-    elif field[6] == 7:
-        field[6] = comp_char
-        return
-    elif field[8] == 9:
-        field[8] = comp_char
-        return
+    priority = [4, 0, 8, 6, 2]
+    for i, i_value in enumerate(priority):
+        if field[i_value] == i_value + 1:
+            field[i_value] = comp_char
+            return
+        else:
+            continue
     for i, i_value in enumerate(field):
         if isinstance(i_value, int):
             field[i] = comp_char
